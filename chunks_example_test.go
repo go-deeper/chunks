@@ -16,7 +16,6 @@ func ExampleSplit() {
 
 	arrChunks := chunks.Split(slice, 4)
 	fmt.Println("chunks:", arrChunks)
-
 	// Output:
 	// chunks: [[1 2 3] [4 5 6] [7 8 9 10]]
 }
@@ -29,7 +28,6 @@ func ExampleSplitFunc() {
 		return nil
 	})
 	fmt.Println("error:", err)
-
 	// Output:
 	// chunk: [1 2 3]
 	// chunk: [4 5 6]
@@ -51,7 +49,6 @@ func ExampleSplitFunc_withBreak() {
 		return nil
 	})
 	fmt.Println("error:", err)
-
 	// Output:
 	// chunk: [1 2 3]
 	// chunk: [4 5 6]
@@ -72,7 +69,6 @@ func ExampleSplitFunc_withError() {
 		return nil
 	})
 	fmt.Println("error:", err)
-
 	// Output:
 	// chunk: [1 2 3]
 	// chunk: [4 5 6]
