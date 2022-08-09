@@ -11,7 +11,7 @@ import (
 
 // Split splits a slice of any type into balanced chunks.
 // Split returns nil if applied slice is empty or maxSize < 1.
-// The size of the last chunk can be distinct from others.
+//
 // The last chunk can have distinct size from others.
 func Split[S ~[]E, E any](slice S, maxSize int) []S {
 	arrLen := len(slice)
