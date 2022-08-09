@@ -14,8 +14,8 @@ import (
 func ExampleSplit() {
 	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	arrChunks := chunks.Split(slice, 4)
-	fmt.Println("chunks:", arrChunks)
+	sliceChunks := chunks.Split(slice, 4)
+	fmt.Println("chunks:", sliceChunks)
 	// Output:
 	// chunks: [[1 2 3] [4 5 6] [7 8 9 10]]
 }
