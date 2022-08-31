@@ -14,63 +14,58 @@ import (
 func ExampleSplit() {
 	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	sliceChunks := chunks.Split(slice, 4)
-	fmt.Println("chunks:", sliceChunks)
+	sliceChunks := chunks.Split(slice, 9)
+	fmt.Println("chunks", sliceChunks)
 	// Output:
-	// chunks: [[1 2 3] [4 5 6] [7 8 9 10]]
+	// chunks [[1 2 3 4 5] [6 7 8 9 10]]
 }
 
 func ExampleSplitFunc() {
-	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	slice := []int64{1, 2, 3, 4, 5, 6}
 
-	err := chunks.SplitFunc(slice, 4, func(chunk []int64) error {
-		fmt.Println("chunk:", chunk)
+	err := chunks.SplitFunc(slice, 5, func(chunk []int64) error {
+		fmt.Println("chunk", chunk)
 		return nil
 	})
-	fmt.Println("error:", err)
+	fmt.Println("error", err)
 	// Output:
-	// chunk: [1 2 3]
-	// chunk: [4 5 6]
-	// chunk: [7 8 9 10]
-	// error: <nil>
-}
-
-func ExampleSplitFunc_withBreak() {
-	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-	var i int
-	err := chunks.SplitFunc(slice, 4, func(chunk []int64) error {
-		if i == 2 {
-			return chunks.ErrBreak
-		}
-		i++
-
-		fmt.Println("chunk:", chunk)
-		return nil
-	})
-	fmt.Println("error:", err)
-	// Output:
-	// chunk: [1 2 3]
-	// chunk: [4 5 6]
-	// error: <nil>
+	// chunk [1 2 3]
+	// chunk [4 5 6]
+	// error <nil>
 }
 
 func ExampleSplitFunc_withError() {
 	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	var i int
 	err := chunks.SplitFunc(slice, 4, func(chunk []int64) error {
-		if i == 2 {
+		if chunk[0] > 5 {
 			return errors.New("some error")
 		}
-		i++
 
-		fmt.Println("chunk:", chunk)
+		fmt.Println("chunk", chunk)
 		return nil
 	})
-	fmt.Println("error:", err)
+	fmt.Println("error", err)
 	// Output:
-	// chunk: [1 2 3]
-	// chunk: [4 5 6]
-	// error: some error
+	// chunk [1 2 3]
+	// chunk [4 5 6]
+	// error some error
+}
+
+func ExampleSplitFunc_withBreak() {
+	slice := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	err := chunks.SplitFunc(slice, 4, func(chunk []int64) error {
+		if chunk[0] > 5 {
+			return chunks.ErrBreak
+		}
+
+		fmt.Println("chunk", chunk)
+		return nil
+	})
+	fmt.Println("error", err)
+	// Output:
+	// chunk [1 2 3]
+	// chunk [4 5 6]
+	// error <nil>
 }
