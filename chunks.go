@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package chunks allows to split a slice into chunks.
+// Package chunks allows to split a slice of any type into chunks with approximately equals sum of values.
 package chunks
 
 import (
