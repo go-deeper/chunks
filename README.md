@@ -3,7 +3,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/go-deeper/chunks.svg)](https://pkg.go.dev/github.com/go-deeper/chunks)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-deeper/chunks)](https://goreportcard.com/report/github.com/go-deeper/chunks)
 [![Go](https://github.com/go-deeper/chunks/actions/workflows/go.yaml/badge.svg)](https://github.com/go-deeper/chunks/actions/workflows/go.yaml)
-[![CodeQL](https://github.com/go-deeper/chunks/actions/workflows/codeql.yml/badge.svg)](https://github.com/go-deeper/chunks/actions/workflows/codeql.yml)
+[![CodeQL](https://github.com/go-deeper/chunks/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/go-deeper/chunks/actions/workflows/github-code-scanning/codeql)
 
 Package chunks allows to split a slice of any type into chunks with approximately equals sum of values.
 
