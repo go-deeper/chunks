@@ -15,16 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [ '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24' ]
+        go-version: [ '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25' ]
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-go@v5
+    - uses: actions/checkout@v5
+    - uses: actions/setup-go@v6
       with:
         go-version: ${{ matrix.go-version }}
     - name: Test with Go
       run: go test -json > TestResults-${{ matrix.go-version }}.json
     - name: Upload Go test results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: Go-results-${{ matrix.go-version }}
         path: TestResults-${{ matrix.go-version }}.json
@@ -34,16 +34,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [ '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24' ]
+        go-version: [ '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25' ]
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-go@v5
+    - uses: actions/checkout@v5
+    - uses: actions/setup-go@v6
       with:
         go-version: ${{ matrix.go-version }}
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v8
+        cache: false
+        check-latest: true
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v9
       with:
-        version: v2.1
+        version: v2.7
 
   govulncheck:
     name: Run govulncheck
